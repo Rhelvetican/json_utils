@@ -1,3 +1,8 @@
+//! # JSON utilities for Rust.
+//!
+//! A collection of utilities for working with JSON in Rust.
+//! Written for my own convenience, but feel free to use it.
+
 pub mod json;
 mod print;
 pub mod rw;

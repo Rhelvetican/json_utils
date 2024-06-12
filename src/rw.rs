@@ -1,3 +1,5 @@
+//! This module provides functions to read and write JSON files.
+
 use std::{
     fs::{create_dir_all, read_to_string, OpenOptions},
     io::Write,
@@ -8,9 +10,15 @@ use anyhow::Result;
 use serde::Serialize;
 use serde_json::{from_str, ser::PrettyFormatter, Serializer, Value};
 
+/// Reads a JSON file and returns a `serde_json::Value`.
+/// This function will error if the file does not exist or if the file is not valid JSON.
+
 pub fn read_json<P: AsRef<Path>>(path: P) -> Result<Value> {
     Ok(from_str(&read_to_string(path)?)?)
 }
+
+/// Writes an object to a JSON file.
+/// This function will error if the file cannot be created or written to.
 
 pub fn write_json<T: Serialize, P: AsRef<Path>>(path: P, value: T) -> Result<()> {
     let path = path.as_ref();
@@ -33,6 +41,8 @@ pub fn write_json<T: Serialize, P: AsRef<Path>>(path: P, value: T) -> Result<()>
 
     Ok(())
 }
+
+/// Writes an object to a JSON file with a custom indentation.
 
 pub fn write_json_with_indent<T: Serialize, P: AsRef<Path>>(
     path: P,

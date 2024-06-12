@@ -1,4 +1,8 @@
+//! JSON utilities.
+
 use serde_json::Value;
+
+/// Get the keys of a JSON object.
 
 pub fn get_keys(value: &Value) -> Vec<String> {
     let mut keys = Vec::new();
@@ -10,6 +14,8 @@ pub fn get_keys(value: &Value) -> Vec<String> {
     keys
 }
 
+/// Get the values of a JSON object.
+
 pub fn get_values(value: &Value) -> Vec<Value> {
     let mut values = Vec::new();
     if let Value::Object(map) = value {
@@ -19,6 +25,8 @@ pub fn get_values(value: &Value) -> Vec<Value> {
     }
     values
 }
+
+/// Get the length of a JSON array.
 
 pub fn get_length(value: &Value) -> usize {
     if let Value::Array(array) = value {
