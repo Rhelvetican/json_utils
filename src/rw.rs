@@ -1,0 +1,62 @@
+use std::{
+    fs::{create_dir_all, read_to_string, OpenOptions},
+    io::Write,
+    path::Path,
+};
+
+use anyhow::Result;
+use serde::Serialize;
+use serde_json::{from_str, ser::PrettyFormatter, Serializer, Value};
+
+pub fn read_json<P: AsRef<Path>>(path: P) -> Result<Value> {
+    Ok(from_str(&read_to_string(path)?)?)
+}
+
+pub fn write_json<T: Serialize, P: AsRef<Path>>(path: P, value: T) -> Result<()> {
+    let path = path.as_ref();
+    let parent = path.parent().unwrap_or(Path::new("./"));
+    if !parent.exists() {
+        create_dir_all(parent)?;
+    }
+    let mut file = OpenOptions::new()
+        .write(true)
+        .create(true)
+        .truncate(true)
+        .open(path)?;
+
+    let mut buf = Vec::new();
+    let fmtr = PrettyFormatter::with_indent(b"    ");
+    let mut ser = Serializer::with_formatter(&mut buf, fmtr);
+
+    value.serialize(&mut ser)?;
+    file.write_all(&buf)?;
+
+    Ok(())
+}
+
+pub fn write_json_with_indent<T: Serialize, P: AsRef<Path>>(
+    path: P,
+    value: T,
+    indent: usize,
+) -> Result<()> {
+    let indent = " ".repeat(indent);
+    let indent = indent.as_bytes();
+    let path = path.as_ref();
+    let parent = path.parent().unwrap_or(Path::new("./"));
+    if !parent.exists() {
+        create_dir_all(parent)?;
+    }
+    let mut file = OpenOptions::new()
+        .write(true)
+        .create(true)
+        .truncate(true)
+        .open(path)?;
+    let mut buf = Vec::new();
+    let fmtr = PrettyFormatter::with_indent(indent);
+    let mut ser = Serializer::with_formatter(&mut buf, fmtr);
+
+    value.serialize(&mut ser)?;
+    file.write_all(&buf)?;
+
+    Ok(())
+}

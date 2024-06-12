@@ -1,0 +1,17 @@
+[package]
+name = "json_utils_2024"
+authors = ["Rhelvetican <bionicvnb@gmail.com>"]
+description = "Simple JSON utilities for Rust."
+license = "MIT"
+readme = "README.md"
+version = "0.3.0"
+edition = "2021"
+
+[lib]
+path = "src/lib.rs"
+name = "jsonutils"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["preserve_order"] }
+anyhow = "1"
