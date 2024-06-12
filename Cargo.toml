@@ -2,6 +2,8 @@
 name = "json_utils_2024"
 authors = ["Rhelvetican <bionicvnb@gmail.com>"]
 description = "Simple JSON utilities for Rust."
+repository = "https://github.com/Rhelvetican/json_utils"
+homepage = "https://github.com/Rhelvetican/json_utils"
 license = "MIT"
 readme = "README.md"
 version = "0.3.0"
