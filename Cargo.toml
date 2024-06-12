@@ -17,3 +17,7 @@ name = "jsonutils"
 serde = { version = "1", features = ["derive"] }
 serde_json = { version = "1", features = ["preserve_order"] }
 anyhow = "1"
+
+[[example]]
+name = "print_json"
+path = "examples/print_json/src/main.rs"
