@@ -6,12 +6,13 @@ repository = "https://github.com/Rhelvetican/json_utils"
 homepage = "https://github.com/Rhelvetican/json_utils"
 license = "MIT"
 readme = "README.md"
-version = "0.3.0"
+version = "0.3.1"
 edition = "2021"
 
 [lib]
 path = "src/lib.rs"
 name = "jsonutils"
+crate-type = ["lib"]
 
 [dependencies]
 serde = { version = "1", features = ["derive"] }

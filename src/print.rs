@@ -4,11 +4,13 @@ use anyhow::Result;
 use serde::Serialize;
 use serde_json::{ser::PrettyFormatter, Serializer};
 
+use crate::INDENT;
+
 /// Pretty-print a serializable value as JSON.
 
 pub fn print_json<T: Serialize>(value: T) -> Result<()> {
     let mut buf = Vec::new();
-    let fmtr = PrettyFormatter::with_indent(b"    ");
+    let fmtr = PrettyFormatter::with_indent(INDENT);
     let mut ser = Serializer::with_formatter(&mut buf, fmtr);
 
     value.serialize(&mut ser)?;

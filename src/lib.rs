@@ -9,6 +9,8 @@ pub mod rw;
 
 pub use anyhow::*;
 
+const INDENT: &[u8] = b"    ";
+
 pub mod prelude {
     pub use crate::{
         print::{print_json, print_json_with_indent},

@@ -10,6 +10,8 @@ use anyhow::Result;
 use serde::Serialize;
 use serde_json::{from_str, ser::PrettyFormatter, Serializer, Value};
 
+use crate::INDENT;
+
 /// Reads a JSON file and returns a `serde_json::Value`.
 /// This function will error if the file does not exist or if the file is not valid JSON.
 
@@ -33,7 +35,7 @@ pub fn write_json<T: Serialize, P: AsRef<Path>>(path: P, value: T) -> Result<()>
         .open(path)?;
 
     let mut buf = Vec::new();
-    let fmtr = PrettyFormatter::with_indent(b"    ");
+    let fmtr = PrettyFormatter::with_indent(INDENT);
     let mut ser = Serializer::with_formatter(&mut buf, fmtr);
 
     value.serialize(&mut ser)?;
