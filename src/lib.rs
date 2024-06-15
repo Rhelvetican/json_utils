@@ -14,7 +14,7 @@ const INDENT: &[u8] = b"    ";
 pub mod prelude {
     pub use crate::{
         file::{read_json, write_json},
-        print::{print_json, print_json_with_indent},
+        print::print_json,
     };
     pub use serde_json::Value;
 }

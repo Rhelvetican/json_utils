@@ -1,8 +1,5 @@
 use anyhow::Result;
-use jsonutils::{
-    file::write_json,
-    prelude::{print_json, print_json_with_indent},
-};
+use jsonutils::{file::write_json, prelude::print_json, print::print_json_with_indent};
 use serde::Serialize;
 
 #[derive(Debug, Serialize)]
