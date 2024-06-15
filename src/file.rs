@@ -14,6 +14,14 @@ use crate::INDENT;
 
 /// Reads a JSON file and returns a `serde_json::Value`.
 /// This function will error if the file does not exist or if the file is not valid JSON.
+///
+/// ```rust
+/// use jsonutils::file::read_json;
+/// use serde_json::Value;
+///
+/// let mut json: Value = read_json("tests/data.json").unwrap();
+/// 
+/// ```
 
 pub fn read_json<P: AsRef<Path>>(path: P) -> Result<Value> {
     Ok(from_str(&read_to_string(path)?)?)

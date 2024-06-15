@@ -6,7 +6,7 @@ repository = "https://github.com/Rhelvetican/json_utils"
 homepage = "https://github.com/Rhelvetican/json_utils"
 license = "MIT"
 readme = "README.md"
-version = "0.3.1"
+version = "0.3.2"
 edition = "2021"
 
 [lib]
