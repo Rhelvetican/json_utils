@@ -12,6 +12,8 @@ use serde_json::{from_str, ser::PrettyFormatter, Serializer};
 
 use crate::INDENT;
 
+/// Reads a JSON file and deserializes it into an object.
+
 pub fn read_json<P: AsRef<Path>, T: DeserializeOwned>(path: P) -> Result<T> {
     let content = read_to_string(path)?;
     Ok(from_str(&content)?)
