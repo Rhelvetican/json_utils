@@ -7,9 +7,14 @@ pub mod file;
 pub mod json;
 pub mod print;
 
-pub use anyhow::*;
+pub use anyhow;
 
 const INDENT: &[u8] = b"    ";
+
+/// Re-export `serde`.
+pub use serde;
+/// Re-export `serde_json`.
+pub use serde_json;
 
 pub mod prelude {
     pub use crate::{
