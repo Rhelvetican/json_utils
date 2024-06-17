@@ -7,13 +7,14 @@ use std::{
 };
 
 use anyhow::Result;
-use serde::Serialize;
-use serde_json::{from_str, ser::PrettyFormatter, Serializer, Value};
+use serde::{de::DeserializeOwned, Serialize};
+use serde_json::{from_str, ser::PrettyFormatter, Serializer};
 
 use crate::INDENT;
 
-pub fn read_json<P: AsRef<Path>>(path: P) -> Result<Value> {
-    Ok(from_str(&read_to_string(path)?)?)
+pub fn read_json<P: AsRef<Path>, T: DeserializeOwned>(path: P) -> Result<T> {
+    let content = read_to_string(path)?;
+    Ok(from_str(&content)?)
 }
 
 /// Writes an object to a JSON file.
