@@ -1,4 +1,7 @@
-//! This module provides functions to read and write JSON files.
+//! # Read & Write JSON Utilities
+//!
+//! A collection of utilities for reading and writing JSON files.
+//!
 use std::{fs::write, path::Path};
 
 use serde::{de::DeserializeOwned, Serialize};
@@ -9,8 +12,8 @@ use crate::{
     inner::{_create_parent_dir, _read_json_inner},
 };
 
-/// Reads a JSON file and deserializes it into an object.
-/// This function will error if the file cannot be read or deserialized.
+/// Reads a JSON file and deserializes it into a data structure.
+/// This function will error if the file cannot be read or deserialized into the aforementioned data structure.
 pub fn read_json<P: AsRef<Path>, T: DeserializeOwned>(path: P) -> Result<T, Error> {
     let val = _read_json_inner(path)?;
     from_value(val).map_err(Error::json)

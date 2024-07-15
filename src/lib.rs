@@ -2,6 +2,11 @@
 //!
 //! A collection of utilities for working with JSON in Rust.
 //! Written for my own convenience, but feel free to use it.
+//!
+//! ## Features
+//! - Read and write JSON files.
+//! - Print JSON to the console.
+//! - Error handling.
 
 pub mod error;
 pub mod file;
