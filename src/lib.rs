@@ -5,6 +5,7 @@
 
 pub mod error;
 pub mod file;
+mod inner;
 pub mod json;
 pub mod print;
 mod test;

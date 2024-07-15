@@ -5,7 +5,7 @@ use serde_json::{ser::PrettyFormatter, Serializer};
 
 use crate::error::Error;
 
-/// Pretty-print a serializable value as JSON.
+/// Pretty-print a serializable value as JSON with a default indentation of 4 spaces.
 ///
 /// ```rust
 /// use jsonutils::print::print_json;

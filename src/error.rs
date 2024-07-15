@@ -5,6 +5,7 @@ use std::{
     string::FromUtf8Error,
 };
 
+#[derive(Debug)]
 pub enum Error {
     Json(JsonError),
     Io(IoError),
