@@ -3,13 +3,11 @@
 //! A collection of utilities for working with JSON in Rust.
 //! Written for my own convenience, but feel free to use it.
 
+pub mod error;
 pub mod file;
 pub mod json;
 pub mod print;
-
-pub use anyhow;
-
-const INDENT: &[u8] = b"    ";
+mod test;
 
 /// Re-export `serde`.
 pub use serde;

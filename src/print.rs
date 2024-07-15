@@ -1,10 +1,9 @@
 //! Pretty-printing JSONs with ease.
 
-use anyhow::Result;
 use serde::Serialize;
 use serde_json::{ser::PrettyFormatter, Serializer};
 
-use crate::INDENT;
+use crate::error::Error;
 
 /// Pretty-print a serializable value as JSON.
 ///
@@ -21,13 +20,13 @@ use crate::INDENT;
 /// print_json(json).unwrap();
 /// ```
 
-pub fn print_json<T: Serialize>(value: T) -> Result<()> {
+pub fn print_json<T: Serialize>(value: T) -> Result<(), Error> {
     let mut buf = Vec::new();
-    let fmtr = PrettyFormatter::with_indent(INDENT);
+    let fmtr = PrettyFormatter::with_indent(b"    ");
     let mut ser = Serializer::with_formatter(&mut buf, fmtr);
 
-    value.serialize(&mut ser)?;
-    println!("{}", String::from_utf8(buf)?);
+    value.serialize(&mut ser).map_err(Error::json)?;
+    println!("{}", String::from_utf8(buf).map_err(Error::utf8)?);
     Ok(())
 }
 
@@ -46,14 +45,14 @@ pub fn print_json<T: Serialize>(value: T) -> Result<()> {
 /// print_json_with_indent(json, 2).unwrap();
 /// ```
 
-pub fn print_json_with_indent<T: Serialize>(value: T, indent: usize) -> Result<()> {
+pub fn print_json_with_indent<T: Serialize>(value: T, indent: usize) -> Result<(), Error> {
     let indent = " ".repeat(indent);
     let indent = indent.as_bytes();
     let mut buf = Vec::new();
     let fmtr = PrettyFormatter::with_indent(indent);
     let mut ser = Serializer::with_formatter(&mut buf, fmtr);
 
-    value.serialize(&mut ser)?;
-    println!("{}", String::from_utf8(buf)?);
+    value.serialize(&mut ser).map_err(Error::json)?;
+    println!("{}", String::from_utf8(buf).map_err(Error::utf8)?);
     Ok(())
 }

@@ -7,7 +7,7 @@ homepage = "https://github.com/Rhelvetican/json_utils"
 keywords = ["serde", "json", "utilities"]
 license = "MIT"
 readme = "README.md"
-version = "0.4.1"
+version = "0.5.0"
 edition = "2021"
 
 [lib]
@@ -18,4 +18,3 @@ crate-type = ["lib", "rlib"]
 [dependencies]
 serde = { version = "1", features = ["derive"] }
 serde_json = { version = "1", features = ["preserve_order"] }
-anyhow = "1"
