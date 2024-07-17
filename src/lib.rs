@@ -15,13 +15,14 @@ pub mod json;
 pub mod print;
 mod test;
 
-/// Re-export `serde`.
-pub use serde;
 /// Re-export `serde_json`.
 pub use serde_json;
 
 pub mod prelude {
+    //! A prelude for the `json_utils` crate.
+    //! This module contains the most commonly used items.
     pub use crate::{
+        error::Error,
         file::{read_json, write_json},
         print::print_json,
     };
