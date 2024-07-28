@@ -7,7 +7,7 @@ pub fn get_keys(value: &Value) -> Result<Vec<String>, Error> {
     if let Value::Object(map) = value {
         Ok(map.keys().cloned().collect())
     } else {
-        Err(Error::custom("Value is not an object"))
+        Err(Error::custom("Value is not an object."))
     }
 }
 
@@ -16,7 +16,7 @@ pub fn get_values(value: &Value) -> Result<Vec<Value>, Error> {
     if let Value::Object(map) = value {
         Ok(map.values().cloned().collect::<Vec<_>>())
     } else {
-        Err(Error::custom("Value is not an object"))
+        Err(Error::custom("Value is not an object."))
     }
 }
 
@@ -27,6 +27,6 @@ pub fn get_length(value: &Value) -> Result<usize, Error> {
     } else if let Value::Object(map) = value {
         Ok(map.len())
     } else {
-        Err(Error::custom("Value is not an array"))
+        Err(Error::custom("Value is not an array."))
     }
 }

@@ -41,3 +41,15 @@ impl Display for Error {
         }
     }
 }
+
+#[cfg(feature = "anyhow")]
+impl From<Error> for anyhow::Error {
+    fn from(err: Error) -> Self {
+        match err {
+            Error::Json(err) => anyhow::Error::new(err),
+            Error::Io(err) => anyhow::Error::new(err),
+            Error::Utf8(err) => anyhow::Error::new(err),
+            Error::Custom(msg) => anyhow::Error::msg(msg),
+        }
+    }
+}

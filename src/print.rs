@@ -6,6 +6,7 @@ use serde_json::{ser::PrettyFormatter, Serializer};
 use crate::error::Error;
 
 /// Pretty-print a serializable value as JSON with a default indentation of 4 spaces.
+/// Will returns an [Error] if the value cannot be serialized or if the output is not valid UTF-8.
 ///
 /// ```rust
 /// use jsonutils::print::print_json;
@@ -31,7 +32,8 @@ pub fn print_json<T: Serialize>(value: T) -> Result<(), Error> {
 }
 
 /// Pretty-print a serializable value as JSON with a custom indentation.
-///
+/// Will returns an [Error] if the value cannot be serialized or if the output is not valid UTF-8.
+/// 
 /// ```rust
 /// use jsonutils::print::print_json_with_indent;
 /// use serde_json::json;
