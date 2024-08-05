@@ -12,7 +12,7 @@ edition = "2021"
 
 [lib]
 path = "src/lib.rs"
-name = "jsonutils"
+name = "libjsonutils"
 crate-type = ["lib", "rlib"]
 
 [dependencies]

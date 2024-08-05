@@ -6,6 +6,18 @@ mod file_test {
     use serde_json::json;
 
     #[derive(Debug, Serialize, Deserialize)]
+    struct OptionSerde {
+        option: Option<TestStruct>,
+        maybe: Option<i32>,
+    }
+
+    impl OptionSerde {
+        fn new(option: Option<TestStruct>, maybe: Option<i32>) -> Self {
+            Self { option, maybe }
+        }
+    }
+
+    #[derive(Debug, Serialize, Deserialize)]
     struct TestStruct {
         a: i32,
         b: String,
@@ -48,5 +60,24 @@ mod file_test {
         let test = read_json::<_, TestStruct>("./test/test.json").unwrap();
         assert_eq!(test.a, 42);
         assert_eq!(test.b, "hello".to_string());
+    }
+
+    #[test]
+    fn skt() {
+        let mut collector = Vec::new();
+        let test = TestStruct::new(42, "hello");
+        let test2 = TestStruct::new(69, "world");
+        let test3 = TestStruct::new(420, "world");
+
+        let option1 = OptionSerde::new(Some(test), Some(42));
+        let option2 = OptionSerde::new(None, Some(69));
+        let option3 = OptionSerde::new(Some(test3), None);
+        let option4 = OptionSerde::new(Some(test2), Some(999));
+        collector.push(option1);
+        collector.push(option2);
+        collector.push(option3);
+        collector.push(option4);
+
+        write_json("./test/option.json", collector).unwrap();
     }
 }
