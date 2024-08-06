@@ -1,5 +1,5 @@
 [package]
-name = "json_utils_2024"
+name = "libjsonutils"
 authors = ["Rhelvetican <bionicvnb@gmail.com>"]
 description = "Simple JSON utilities for Rust."
 repository = "https://github.com/Rhelvetican/json_utils"
@@ -7,7 +7,7 @@ homepage = "https://github.com/Rhelvetican/json_utils"
 keywords = ["serde", "json", "utilities"]
 license = "MIT"
 readme = "README.md"
-version = "0.5.2"
+version = "0.6.0"
 edition = "2021"
 
 [lib]
