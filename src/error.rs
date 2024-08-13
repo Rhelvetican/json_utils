@@ -10,7 +10,7 @@ pub enum Error {
     Json(JsonError),
     Io(IoError),
     Utf8(FromUtf8Error),
-    Custom(&'static str),
+    Other(&'static str),
 }
 
 impl Error {
@@ -26,8 +26,8 @@ impl Error {
         Self::Utf8(err)
     }
 
-    pub(crate) fn custom(msg: &'static str) -> Self {
-        Self::Custom(msg)
+    pub(crate) fn other(msg: &'static str) -> Self {
+        Self::Other(msg)
     }
 }
 
@@ -37,7 +37,7 @@ impl Display for Error {
             Self::Json(err) => err.fmt(f),
             Self::Io(err) => err.fmt(f),
             Self::Utf8(err) => err.fmt(f),
-            Self::Custom(msg) => write!(f, "{}", msg),
+            Self::Other(msg) => write!(f, "{}", msg),
         }
     }
 }
@@ -49,7 +49,7 @@ impl From<Error> for anyhow::Error {
             Error::Json(err) => anyhow::Error::new(err),
             Error::Io(err) => anyhow::Error::new(err),
             Error::Utf8(err) => anyhow::Error::new(err),
-            Error::Custom(msg) => anyhow::Error::msg(msg),
+            Error::Other(msg) => anyhow::Error::msg(msg),
         }
     }
 }

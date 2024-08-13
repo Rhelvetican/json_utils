@@ -26,5 +26,5 @@ pub mod prelude {
         file::{read_json, write_json},
         print::print_json,
     };
-    pub use serde_json::Value;
+    pub use serde_json::{json, Value};
 }
