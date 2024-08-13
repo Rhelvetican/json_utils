@@ -7,7 +7,7 @@ homepage = "https://github.com/Rhelvetican/json_utils"
 keywords = ["serde", "serde_json", "json", "utilities"]
 license = "MIT"
 readme = "README.md"
-version = "0.6.2"
+version = "0.6.3"
 edition = "2021"
 
 [dependencies]
